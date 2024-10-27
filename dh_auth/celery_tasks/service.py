@@ -1,17 +1,17 @@
 """Сервисные задачи"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 
-from datetime import datetime, UTC, timedelta
+from datetime import UTC, datetime, timedelta
 
-from sqlalchemy import Select, select, delete, Delete
+from sqlalchemy import Delete, Select, delete, select
+from dh_user.model import UserModel
+from dh_base.config import base_config
+from dh_base.database import Base, sync_session_maker
 
 from .celery import celery
-from dh_base.database import sync_session_maker, Base
-from ..models import SessionModel, ConfirmEmail, ForgotPasswordModel
-from dh_base.config import base_config
-from dh_user.model import UserModel
+from ..models import ConfirmEmail, SessionModel, ForgotPasswordModel
 
 MODELS: list[Base] = [SessionModel, ConfirmEmail, ForgotPasswordModel, UserModel]
 

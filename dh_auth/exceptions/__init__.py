@@ -1,7 +1,7 @@
 """Исключения доступа"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
-from .access_data import *
 from .token import *
 from .session import *
+from .access_data import *

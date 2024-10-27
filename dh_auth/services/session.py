@@ -1,16 +1,16 @@
 """Сервис для работы с сессиями"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 from datetime import datetime
 
 from sqlalchemy import Update, update
+from dh_user.model import UserModel
 
 from ..consts import ADMIN_ROLE_KEY
-from ..exceptions import SessionNotFound, CloseSessionOtherUser
 from ..models import SessionModel
+from ..exceptions import SessionNotFound, CloseSessionOtherUser
 from ..repository import SessionRepository
-from dh_user.model import UserModel
 
 
 class SessionService:
@@ -42,9 +42,9 @@ class SessionService:
 
         @param user: данные пользователя
         """
-        query: Update = update(SessionModel).where(SessionModel.user_id == user.id).values(
-            date_delete=datetime.now(),
-            date_update=datetime.now(),
-            is_active=False
+        query: Update = (
+            update(SessionModel)
+            .where(SessionModel.user_id == user.id)
+            .values(date_delete=datetime.now(), date_update=datetime.now(), is_active=False)
         )
         await SessionRepository().manual_execute(query)

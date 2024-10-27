@@ -1,14 +1,16 @@
 """Репозиторий подтверждения почты"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
+
+from dh_base.database import Base
+from dh_base.repositories import BaseRepository
 
 from ..models import ConfirmEmail
-from dh_base.repositories import BaseRepository
-from dh_base.database import Base
 
 
 class ConfirmEmailRepository(BaseRepository):
     """Репозиторий подтверждения почты"""
+
     @property
     def model(self) -> Base:
         return ConfirmEmail

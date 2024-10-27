@@ -2,14 +2,16 @@
 
 from pydantic_settings import BaseSettings
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 
 class Settings(BaseSettings):
     """Класс конфигов"""
+
     class Config:
         """Конфигурация"""
-        env_file: str = '.env'
+
+        env_file: str = ".env"
 
     # Схема криптошифрования
     CRYPTO_CONTEXT_SCHEME: str

@@ -1,17 +1,16 @@
 """Задачи по отправке писем"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 
 import smtplib
 
 from pydantic import EmailStr
-
-from dh_base.consts import TimeInSeconds
-from .celery import celery
-from .email_templates import create_confirmation_template, \
-    create_restore_template, create_forgot_password_template
 from dh_base.config import base_config
+from dh_base.consts import TimeInSeconds
+
+from .celery import celery
+from .email_templates import create_restore_template, create_confirmation_template, create_forgot_password_template
 
 
 @celery.task(bind=True, max_retries=3, default_retry_delay=TimeInSeconds.hour)
@@ -32,10 +31,10 @@ def send_confirm_email(link: str, email_to: EmailStr) -> None:
 @celery.task(bind=True, max_retries=3, default_retry_delay=TimeInSeconds.hour)
 def send_restore_email(link: str, email_to: EmailStr) -> None:
     """
-    Отправка письма восстановления
-base_config
-    @param link: ссылка на подтверждение
-    @param email_to: почта
+        Отправка письма восстановления
+    base_config
+        @param link: ссылка на подтверждение
+        @param email_to: почта
     """
     content = create_restore_template(link, email_to)
 
