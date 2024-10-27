@@ -4,7 +4,7 @@ __author__: str = 'Старков Е.П.'
 
 from ..models import SessionModel
 from dh_base.repositories import BaseRepository
-from step_vpn_service.database import Base
+from dh_base.database import Base
 
 
 class SessionRepository(BaseRepository):

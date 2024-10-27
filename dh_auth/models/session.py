@@ -8,8 +8,8 @@ from dataclasses import dataclass
 from sqlalchemy import Integer, ForeignKey, String, Text, Boolean, Float
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from dh_base.column import DateEditColumns
-from step_vpn_service.database import Base
+from dh_base.columns import DateEditColumns
+from dh_base.database import Base
 
 
 @dataclass

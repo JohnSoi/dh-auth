@@ -12,7 +12,11 @@ dh-base = {git = "https://github.com/JohnSoi/dh-base.git"}
 passlib = "^1.7.4"
 python-jose = "^3.3.0"
 sqlalchemy = "^2.0.36"
+celery = "^5.4.0"
 
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^75.2.0"
 
 [build-system]
 requires = ["poetry-core"]

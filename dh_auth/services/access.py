@@ -9,14 +9,14 @@ from uuid import UUID, uuid4
 from fastapi import Response
 from pydantic import EmailStr
 
-from step_vpn_service.auth.exceptions import NotFoundConfirmToken, ConfirmTokenExpire, \
+from ..exceptions import NotFoundConfirmToken, ConfirmTokenExpire, \
     ConfirmTokenUsed, NotFoundRestoreToken, RestoreTokenUsed
-from step_vpn_service.auth.helpers.auth import verify_password, get_password_hash
-from step_vpn_service.auth.helpers.token import create_access_token
-from step_vpn_service.auth.models import SessionModel, ConfirmEmail, ForgotPasswordModel
-from step_vpn_service.auth.repository import AccessDataRepository, SessionRepository, \
+from ..helpers.auth import verify_password, get_password_hash
+from ..helpers.token import create_access_token
+from ..models import SessionModel, ConfirmEmail, ForgotPasswordModel
+from ..repository import AccessDataRepository, SessionRepository, \
     ConfirmEmailRepository, ForgotPasswordRepository
-from step_vpn_service.auth.schemas import LoginData
+from ..schemas import LoginData
 from step_vpn_service.contacts.consts import ContactType
 from step_vpn_service.contacts.model import ContactModel
 from step_vpn_service.contacts.repository import ContactRepository
@@ -24,7 +24,7 @@ from step_vpn_service.settings import settings
 from step_vpn_service.users.exceptions import UserNotFound
 from step_vpn_service.users.model import UserModel
 from step_vpn_service.users.repository import UserRepository
-from step_vpn_service.celery_tasks.email_sender import send_restore_email, send_forgot_password_email
+from ..celery_tasks.email_sender import send_restore_email, send_forgot_password_email
 
 
 class AccessService:

@@ -3,7 +3,7 @@
 __author__: str = 'Старков Е.П.'
 
 from fastapi import status
-from dh_base.base.exception import BaseAppException
+from dh_base.exceptions import BaseAppException
 
 
 class SessionNotFound(BaseAppException):

@@ -8,7 +8,7 @@ from datetime import date
 from sqlalchemy import Integer, String, Boolean, Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from step_vpn_service.database import Base
+from dh_base.database import Base
 
 
 class AccessDataModel(Base):

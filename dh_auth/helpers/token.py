@@ -10,7 +10,7 @@ from ..exceptions import NotTokenInCookie, \
     NotValidToken, TokenExpired, NotUserId, NoSessionData, SessionClose
 from ..models import SessionModel
 from ..repository import SessionRepository
-from step_vpn_service.settings import settings
+from ..config import auth_config
 
 
 def create_access_token(data: dict) -> str:
@@ -22,10 +22,10 @@ def create_access_token(data: dict) -> str:
     """
     to_encode: dict = data.copy()
     to_encode.update({
-        'exp': datetime.now(UTC) + timedelta(days=settings.TOKEN_EXPIRE_DAY)
+        'exp': datetime.now(UTC) + timedelta(days=auth_config.TOKEN_EXPIRE_DAY)
     })
 
-    return jwt.encode(to_encode, settings.SECRET_KEY, settings.ENCODE_ALGORITHM)
+    return jwt.encode(to_encode, auth_config.SECRET_KEY, auth_config.ENCODE_ALGORITHM)
 
 
 def get_token(request: Request) -> str | None:
@@ -35,7 +35,7 @@ def get_token(request: Request) -> str | None:
     @param request: экземпляр запроса
     @return: токен доступа
     """
-    token = request.cookies.get(settings.TOKEN_COOKIE_NAME)
+    token = request.cookies.get(auth_config.TOKEN_COOKIE_NAME)
 
     if not token:
         raise NotTokenInCookie()
@@ -51,7 +51,7 @@ async def get_user_id_from_token(access_token: str) -> int:
     @return: идентификатор пользователя
     """
     try:
-        decode_data = jwt.decode(access_token, settings.SECRET_KEY, settings.ENCODE_ALGORITHM)
+        decode_data = jwt.decode(access_token, auth_config.SECRET_KEY, auth_config.ENCODE_ALGORITHM)
     except JWTError as exc:
         raise NotValidToken() from exc
 

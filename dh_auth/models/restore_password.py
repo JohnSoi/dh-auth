@@ -8,8 +8,8 @@ from uuid import UUID
 from sqlalchemy import Uuid, Boolean, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-from dh_base.column import IdColumns, DateEditColumns
-from step_vpn_service.database import Base
+from dh_base.columns import IdColumns, DateEditColumns
+from dh_base.database import Base
 
 
 class ForgotPasswordModel(IdColumns, Base, DateEditColumns):

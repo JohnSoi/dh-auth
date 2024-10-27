@@ -6,10 +6,10 @@ from datetime import datetime
 
 from sqlalchemy import Update, update
 
-from step_vpn_service.auth.consts import ADMIN_ROLE_KEY
-from step_vpn_service.auth.exceptions import SessionNotFound, CloseSessionOtherUser
-from step_vpn_service.auth.models import SessionModel
-from step_vpn_service.auth.repository import SessionRepository
+from ..consts import ADMIN_ROLE_KEY
+from ..exceptions import SessionNotFound, CloseSessionOtherUser
+from ..models import SessionModel
+from ..repository import SessionRepository
 from step_vpn_service.users.model import UserModel
 
 
