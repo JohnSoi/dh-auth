@@ -18,7 +18,7 @@ celery: Celery = Celery(
 celery.conf.update(timezone="UTC", enable_utc=True)
 
 celery_beat: Celery = Celery(
-    f"{auth_config.CELERY_NAME}_beat",
+    f"{auth_config.CELERY_AUTH_NAME}_beat",
     broker=base_config.REDIS_URL,
     include=[f"{base_config.APP_NAME}.celery_tasks.service"],
     broker_connection_retry_on_startup=True,
