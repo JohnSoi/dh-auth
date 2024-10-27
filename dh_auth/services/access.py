@@ -9,12 +9,12 @@ from datetime import UTC, datetime, timedelta
 from fastapi import Response
 from pydantic import EmailStr
 from dh_user.model import UserModel
+from dh_base.config import base_config
+from dh_contact.model import ContactModel
+from dh_contact.consts import ContactType
 from dh_user.exceptions import UserNotFound
 from dh_user.repository import UserRepository
-from step_vpn_service.settings import settings
-from step_vpn_service.contacts.model import ContactModel
-from step_vpn_service.contacts.consts import ContactType
-from step_vpn_service.contacts.repository import ContactRepository
+from dh_contact.repository import ContactRepository
 
 from ..models import ConfirmEmail, SessionModel, ForgotPasswordModel
 from ..schemas import LoginData
@@ -50,7 +50,7 @@ class AccessService:
 
         access_token = create_access_token({"sub": str(user.id)})
         await SessionRepository().create({**payload.dict(), "user_id": user.id, "token": access_token})
-        response.set_cookie(settings.TOKEN_COOKIE_NAME, access_token, httponly=True)
+        response.set_cookie(base_config.TOKEN_COOKIE_NAME, access_token, httponly=True)
 
         return {"access_token": access_token}
 
@@ -67,7 +67,7 @@ class AccessService:
         if session:
             await SessionRepository().delete(session.id)
 
-        response.set_cookie(settings.TOKEN_COOKIE_NAME, "", httponly=True)
+        response.set_cookie(base_config.TOKEN_COOKIE_NAME, "", httponly=True)
 
     @classmethod
     async def confirm_email(cls, confirm_uuid: UUID) -> dict[str, bool]:
@@ -82,7 +82,7 @@ class AccessService:
         if not confirm_data:
             raise NotFoundConfirmToken()
 
-        if (confirm_data.date_create + timedelta(hours=settings.CONFIRM_TOKEN_EXPIRE_HOUR)) < (datetime.now(UTC)):
+        if (confirm_data.date_create + timedelta(hours=base_config.CONFIRM_TOKEN_EXPIRE_HOUR)) < (datetime.now(UTC)):
             raise ConfirmTokenExpire()
 
         if confirm_data.is_used:
@@ -138,7 +138,7 @@ class AccessService:
         if token_exist.is_used:
             raise RestoreTokenUsed()
 
-        if (token_exist.date_create + timedelta(hours=settings.CONFIRM_TOKEN_EXPIRE_HOUR)) < (datetime.now(UTC)):
+        if (token_exist.date_create + timedelta(hours=base_config.CONFIRM_TOKEN_EXPIRE_HOUR)) < (datetime.now(UTC)):
             raise ConfirmTokenExpire()
 
         await ForgotPasswordRepository().update(token_exist.id, {"is_used": True})
