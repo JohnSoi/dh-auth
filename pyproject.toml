@@ -15,6 +15,7 @@ sqlalchemy = "^2.0.36"
 celery = "^5.4.0"
 dh-user = {git = "https://github.com/JohnSoi/dh-user.git"}
 pydantic = {extras = ["email"], version = "^2.9.2"}
+bcrypt = "^4.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
