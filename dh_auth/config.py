@@ -1,5 +1,6 @@
 """Модуль конфигов приложения"""
 
+from pydantic import Extra
 from pydantic_settings import BaseSettings
 
 __author__: str = "Старков Е.П."
@@ -12,6 +13,7 @@ class Settings(BaseSettings):
         """Конфигурация"""
 
         env_file: str = ".env"
+        extra = Extra.allow
 
     # Схема криптошифрования
     CRYPTO_CONTEXT_SCHEME: str
