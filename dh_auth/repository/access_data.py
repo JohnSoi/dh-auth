@@ -8,7 +8,7 @@ from ..consts import ADMIN_ROLE_KEY
 from ..exceptions import NoActiveAccessData, NotAccessOperation
 from dh_base.repositories import BaseRepository
 from ..models import AccessDataModel
-from step_vpn_service.users.model import UserModel
+from dh_user.model import UserModel
 
 
 class AccessDataRepository(BaseRepository):

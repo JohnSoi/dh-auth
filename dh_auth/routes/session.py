@@ -6,8 +6,8 @@ from fastapi import APIRouter, Depends
 
 from ..schemas import SessionCloseIn
 from ..services import SessionService
-from step_vpn_service.users.helpers import get_current_user
-from step_vpn_service.users.model import UserModel
+from dh_user.helpers import get_current_user
+from dh_user.model import UserModel
 
 router: APIRouter = APIRouter(prefix='/session', tags=['Session'])
 

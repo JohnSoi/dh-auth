@@ -21,9 +21,9 @@ from step_vpn_service.contacts.consts import ContactType
 from step_vpn_service.contacts.model import ContactModel
 from step_vpn_service.contacts.repository import ContactRepository
 from step_vpn_service.settings import settings
-from step_vpn_service.users.exceptions import UserNotFound
-from step_vpn_service.users.model import UserModel
-from step_vpn_service.users.repository import UserRepository
+from dh_user.exceptions import UserNotFound
+from dh_user.model import UserModel
+from dh_user.repository import UserRepository
 from ..celery_tasks.email_sender import send_restore_email, send_forgot_password_email
 
 

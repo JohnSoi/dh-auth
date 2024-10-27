@@ -13,6 +13,7 @@ passlib = "^1.7.4"
 python-jose = "^3.3.0"
 sqlalchemy = "^2.0.36"
 celery = "^5.4.0"
+dh-user = {git = "https://github.com/JohnSoi/dh-user.git"}
 
 
 [tool.poetry.group.dev.dependencies]

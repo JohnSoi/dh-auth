@@ -10,7 +10,7 @@ from ..consts import ADMIN_ROLE_KEY
 from ..exceptions import SessionNotFound, CloseSessionOtherUser
 from ..models import SessionModel
 from ..repository import SessionRepository
-from step_vpn_service.users.model import UserModel
+from dh_user.model import UserModel
 
 
 class SessionService:
