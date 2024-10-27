@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "dh-auth"
+version = "0.1.0"
+description = ""
+authors = ["JohnSoi <un.perso@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.3"
+dh-base = {git = "https://github.com/JohnSoi/dh-base.git"}
+passlib = "^1.7.4"
+python-jose = "^3.3.0"
+sqlalchemy = "^2.0.36"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
