@@ -13,7 +13,7 @@ class Settings(BaseSettings):
         """Конфигурация"""
 
         env_file: str = ".env"
-        extra = Extra.allow
+        extra = Extra.ignore
 
     # Схема криптошифрования
     CRYPTO_CONTEXT_SCHEME: str
