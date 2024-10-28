@@ -29,5 +29,8 @@ class Settings(BaseSettings):
     # Название задач Celery
     CELERY_AUTH_NAME: str
 
+    # Срок действия токена в часах
+    CONFIRM_TOKEN_EXPIRE_HOUR: int
+
 
 auth_config: Settings = Settings()
