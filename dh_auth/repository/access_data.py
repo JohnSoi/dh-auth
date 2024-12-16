@@ -35,7 +35,7 @@ class AccessDataRepository(BaseRepository):
 
         access_data: AccessDataModel = await self.find_one_or_none(user_id=user_id)
 
-        if not access_data:
+        if not access_data or not access_data.is_active:
             raise NoActiveAccessData()
 
         return access_data
