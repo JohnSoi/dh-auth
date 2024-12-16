@@ -1,6 +1,6 @@
 """Данные о сессии"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 
 from pydantic import BaseModel
@@ -12,6 +12,7 @@ class SessionCloseIn(BaseModel):
 
 class SessionData(BaseModel):
     """Данные о сессии"""
+
     city: str
     country: str
     country_code: str
@@ -26,4 +27,5 @@ class SessionData(BaseModel):
 
 class SessionPublicData(SessionData):
     """Публичные данные о сессии"""
+
     is_active: bool

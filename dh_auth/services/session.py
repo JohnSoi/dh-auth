@@ -1,16 +1,16 @@
 """Сервис для работы с сессиями"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 from datetime import datetime
 
 from sqlalchemy import Update, update
+from dh_user.model import UserModel
 
-from step_vpn_service.auth.consts import ADMIN_ROLE_KEY
-from step_vpn_service.auth.exceptions import SessionNotFound, CloseSessionOtherUser
-from step_vpn_service.auth.models import SessionModel
-from step_vpn_service.auth.repository import SessionRepository
-from step_vpn_service.users.model import UserModel
+from ..consts import ADMIN_ROLE_KEY
+from ..models import SessionModel
+from ..exceptions import SessionNotFound, CloseSessionOtherUser
+from ..repository import SessionRepository
 
 
 class SessionService:
@@ -42,9 +42,9 @@ class SessionService:
 
         @param user: данные пользователя
         """
-        query: Update = update(SessionModel).where(SessionModel.user_id == user.id).values(
-            date_delete=datetime.now(),
-            date_update=datetime.now(),
-            is_active=False
+        query: Update = (
+            update(SessionModel)
+            .where(SessionModel.user_id == user.id)
+            .values(date_delete=datetime.now(), date_update=datetime.now(), is_active=False)
         )
         await SessionRepository().manual_execute(query)

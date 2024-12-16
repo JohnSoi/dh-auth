@@ -1,12 +1,12 @@
 """Хелперы для работы с паролем"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 from passlib.context import CryptContext
 
-from step_vpn_service.settings import settings
+from ..config import auth_config
 
-pwd_conntext = CryptContext(schemes=[settings.CRYPTO_CONTEXT_SCHEME], deprecated='auto')
+pwd_conntext = CryptContext(schemes=[auth_config.CRYPTO_CONTEXT_SCHEME], deprecated="auto")
 
 
 def get_password_hash(password: str) -> str:

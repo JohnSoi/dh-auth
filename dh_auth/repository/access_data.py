@@ -1,14 +1,15 @@
 """Репозиторий доступа"""
 
-__author__: str = 'Старков Е.П.'
+__author__: str = "Старков Е.П."
 
 from typing import Type
 
-from ..consts import ADMIN_ROLE_KEY
-from ..exceptions import NoActiveAccessData, NotAccessOperation
+from dh_user.model import UserModel
 from dh_base.repositories import BaseRepository
+
+from ..consts import ADMIN_ROLE_KEY
 from ..models import AccessDataModel
-from step_vpn_service.users.model import UserModel
+from ..exceptions import NoActiveAccessData, NotAccessOperation
 
 
 class AccessDataRepository(BaseRepository):
