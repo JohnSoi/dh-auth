@@ -48,6 +48,6 @@ class AccessDataRepository(BaseRepository):
             return query
 
         if filters.get("role_id"):
-            query = query.where(AccessDataModel.id == filters.get("role_id"))
+            query = query.where(AccessDataModel.role_id == filters.get("role_id"))
 
         return query
