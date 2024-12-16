@@ -22,7 +22,7 @@ class AccessDataRepository(BaseRepository):
 
     @property
     def ordering_field_name(self) -> str:
-        return AccessDataModel.__table__.c.login
+        return "login"
 
     async def get_data_with_permission(self, user_id: int, user: UserModel) -> AccessDataModel:
         """
