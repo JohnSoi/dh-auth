@@ -33,7 +33,10 @@ def get_token(request: Request) -> str | None:
     @param request: экземпляр запроса
     @return: токен доступа
     """
-    token = request.cookies.get(auth_config.TOKEN_COOKIE_NAME)
+    token = request.cookies.get(auth_config.TOKEN_COOKIE_NAME) or request.headers.get("authorization")
+
+    if "Bearer " in token:
+        token.replace("Bearer ", "")
 
     if not token:
         raise NotTokenInCookie()
