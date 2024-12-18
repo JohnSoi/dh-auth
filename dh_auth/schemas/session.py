@@ -15,14 +15,14 @@ class SessionData(BaseModel):
 
     city: str
     country: str
-    country_code: str
+    countryCode: str
     ip: str
     lat: float
     lon: float
     os: str
-    region_name: str
+    regionName: str
     type: str
-    user_agent: str
+    userAgent: str
 
 
 class SessionPublicData(SessionData):
