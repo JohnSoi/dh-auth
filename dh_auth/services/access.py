@@ -59,7 +59,7 @@ class AccessService:
         await SessionRepository().create({**params, "user_id": user.id, "token": access_token})
         response.set_cookie(auth_config.TOKEN_COOKIE_NAME, access_token, httponly=True)
 
-        return {"access_token": access_token}
+        return {"accessToken": access_token}
 
     @classmethod
     async def logout(cls, response: Response, access_token: str) -> None:
