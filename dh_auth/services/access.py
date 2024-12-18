@@ -49,7 +49,14 @@ class AccessService:
             raise UserNotFound()
 
         access_token = create_access_token({"sub": str(user.id)})
-        await SessionRepository().create({**payload.dict(), "user_id": user.id, "token": access_token})
+        params: dict = payload.dict()
+        params['region_name'] = params['regionName']
+        params['user_agent'] = params['userAgent']
+        params['country_code'] = params['countryCode']
+        del params['regionName']
+        del params['userAgent']
+        del params['countryCode']
+        await SessionRepository().create({**params, "user_id": user.id, "token": access_token})
         response.set_cookie(auth_config.TOKEN_COOKIE_NAME, access_token, httponly=True)
 
         return {"access_token": access_token}
