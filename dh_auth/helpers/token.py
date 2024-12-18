@@ -36,7 +36,7 @@ def get_token(request: Request) -> str | None:
     token = request.cookies.get(auth_config.TOKEN_COOKIE_NAME) or request.headers.get("authorization")
 
     if "Bearer " in token:
-        token.replace("Bearer ", "")
+        token = token.replace("Bearer ", "")
 
     if not token:
         raise NotTokenInCookie()
